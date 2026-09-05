@@ -61,6 +61,10 @@
   figure.tall img{height:300px}
   figcaption{padding:12px 14px 14px;font-size:13.5px;color:var(--muted)}
   figcaption b{color:var(--ink);display:block;font-size:14px;margin-bottom:2px}
+  h3.ph{font-size:16.5px;margin:38px 0 12px;letter-spacing:-.01em}
+  h3.ph .cnt{color:var(--faint);font-weight:500;font-size:13.5px}
+  .noimg{height:210px;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--faint);font-size:13px;padding:0 18px;text-align:center;border-bottom:1px solid var(--line)}
+  .meta2{display:block;font-size:12px;color:var(--faint);margin-top:3px}
   .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
   .tag{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px}
   .tag.money{background:var(--money-bg);color:var(--money-ink)}
@@ -282,124 +286,707 @@ $15.99 actually buy, and who has to pay it?</i></p>
   </figure>
 </div>
 
-<h2><span class="n">05</span>Flow gallery — selected screens by phase</h2>
-<p class="lede">Click any image for the full capture. The gallery runs in flow order from first touch through the
-Final Steps to the very last screen of the product. Identity-bearing screens (taxpayer form, personal summary,
-filled W-2 header, and one screen showing an account phone number) are intentionally omitted from this public page.</p>
+<h2><span class="n">05</span>Complete flow gallery — every screen, in order</h2>
+<p class="lede">The full evidence set: every logged screen turn across all seven phases, in the exact order a filer
+meets them. Click any image for the full capture (“full-page ↗” where a scrolling capture exists). Screens whose
+images are withheld from this public page (identity data) appear as labeled placeholders so the sequence stays
+complete and honest.</p>
+<h3 class="ph">P1 · Landing → return hub <span class="cnt">— 2 screens</span></h3>
 <div class="grid">
   <figure>
+    <a href="assets/ftu-desktop-p1-s01-landing-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p1-s01-landing.png" alt="ftu-desktop-p1-s01: Free Online Tax Filing for Federal Returns"></a>
+    <figcaption><b>p1-s01 · Free Online Tax Filing for Federal Returns</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      Public landing page, first measured touch. <a href="assets/ftu-desktop-p1-s01-landing-full.png" target="_blank" rel="noopener">full-page ↗</a>
+      <span class="tags"><span class="tag money">passive · $15.99 per state</span></span>
+    </figcaption>
+  </figure>
+  <figure>
     <a href="assets/ftu-desktop-p1-s02-welcome-back-hub.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p1-s02-welcome-back-hub.png" alt="Return hub with Begin 2025 Tax Return"></a>
-    <figcaption><b>P1 · Return hub</b> Single primary CTA; section rail (Personal → Final Steps) previews the whole journey.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p1-s02-welcome-back-hub.png" alt="ftu-desktop-p1-s02: Welcome Back!"></a>
+    <figcaption><b>p1-s02 · Welcome Back!</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      Return dashboard hub ('Welcome back!') — Phase 1 exit criterion reached.
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">P2 · Personal info <span class="cnt">— 6 screens</span></h3>
+<div class="grid">
+  <figure>
+    <div class="noimg">Screenshots withheld — form contains the test SSN, DOB, and address.</div>
+    <figcaption><b>p2-s01 · Taxpayer Information — Tell us about yourself</b>
+      <span class="meta2">form · 1 click · 9 required fields</span>
+      Fresh Stephen run, editing the existing return in place (it pre-filled prior Jordan values: name JORDAN SAMPLETON, occupation MARKETING COORDINATOR, SSN masked, address…
+      <span class="tags"><span class="tag warn">flagged</span></span>
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p2-s02-filing-status.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p2-s02-filing-status.png" alt="Filing status selection"></a>
-    <figcaption><b>P2 · Filing status</b> Single-select with “help me decide” escape hatch; sensible defaults carried forward.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p2-s02-filing-status.png" alt="ftu-desktop-p2-s02: Filing Status"></a>
+    <figcaption><b>p2-s02 · Filing Status</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Filing status single-select radio group (Single / MFJ / MFS / Head of Household / Qualifying Surviving Spouse / 'I'm not sure - help me decide').
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p2-s03-dependents.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p2-s03-dependents.png" alt="ftu-desktop-p2-s03: Your Dependents and Qualifying Children"></a>
+    <figcaption><b>p2-s03 · Your Dependents and Qualifying Children</b>
+      <span class="meta2">form · 1 click · 0 required fields</span>
+      Dependent screening. No form fields for the no-dependents path: page states verbatim 'If you have no dependents or qualifying children, just click Continue.' Persona…
+    </figcaption>
+  </figure>
+  <figure>
+    <div class="noimg">Screenshots withheld — summary displays the full test SSN, DOB, and an account phone number.</div>
+    <figcaption><b>p2-s04 · Personal Information Summary</b>
+      <span class="meta2">review · 1 click · 1 required field</span>
+      VERIFICATION PASSED — summary shows Name 'Stephen Stalcup', SSN '400-01-4675' (ends 4675), DOB 'May 14, 1999', Address '789 Pearl Avenue Uptown, WY 82001', Filing…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p2-s05-deluxe-upsell-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p2-s05-deluxe-upsell.png" alt="ftu-desktop-p2-s05: Deluxe Support Upgrade"></a>
+    <figcaption><b>p2-s05 · Deluxe Support Upgrade</b>
+      <span class="meta2">upsell · 1 click · 0 required fields</span>
+      Deluxe upsell interstitial (the one the prior Jordan run flagged near the personal summary). <a href="assets/ftu-desktop-p2-s05-deluxe-upsell-full.png" target="_blank" rel="noopener">full-page ↗</a>
+      <span class="tags"><span class="tag money">interstitial · $7.99</span><span class="tag warn">flagged</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p2-s06-off-to-good-start.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p2-s06-off-to-good-start.png" alt="ftu-desktop-p2-s06: We're off to a good start"></a>
+    <figcaption><b>p2-s06 · We're off to a good start</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      PHASE-2 EXIT BOUNDARY.
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">P3 · Income / W-2 <span class="cnt">— 11 screens</span></h3>
+<div class="grid">
+  <figure>
+    <a href="assets/ftu-desktop-p3-s01-w2-ready.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s01-w2-ready.png" alt="ftu-desktop-p3-s01: Your Wages (Form W-2)"></a>
+    <figcaption><b>p3-s01 · Your Wages (Form W-2)</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      W-2 intro / readiness screen: 'Are you ready to enter your W-2?' with radios 'Yes - I'll enter my W-2 now' (pre-selected), 'I don't have any W-2s', 'Skip for now'.
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p3-s02-w2-entry-method-fork.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p3-s02-w2-entry-method-fork.png" alt="W-2 entry method fork: manual, upload, scan"></a>
-    <figcaption><b>P3 · The import fork</b> Manual / Upload a file / Scan with phone. Manual chosen for comparability.
-      <span class="tags"><span class="tag ok">import offered</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p3-s02-w2-entry-method-fork.png" alt="ftu-desktop-p3-s02: W-2 Entry Method"></a>
+    <figcaption><b>p3-s02 · W-2 Entry Method</b>
+      <span class="meta2">form · 2 clicks · 1 required field</span>
+      REQUIRED ARTIFACT — the import-vs-manual fork.
+    </figcaption>
   </figure>
   <figure>
-    <a href="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" alt="Invalid EIN advisory alert"></a>
-    <figcaption><b>P3 · Advisory, not a wall</b> Invalid-format EIN triggers a yellow alert that still lets the filer continue.
-      <span class="tags"><span class="tag ok">soft validation</span></span></figcaption>
+    <div class="noimg">Screenshot withheld — the W-2 form header carries the pre-filled test SSN.</div>
+    <figcaption><b>p3-s03 · Wages (Form W-2)</b>
+      <span class="meta2">form · 1 click · 13 required fields</span>
+      Manual W-2 entry form for GOODS INC.
+      <span class="tags"><span class="tag warn">flagged</span></span>
+    </figcaption>
   </figure>
   <figure>
-    <a href="assets/ftu-desktop-p3-s09-your-income-hub-full.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p3-s09-your-income-hub-full.png" alt="Your Income category hub"></a>
-    <figcaption><b>P3 · Income hub</b> All income categories on one menu; W-2 shows its saved amount inline.</figcaption>
+    <div class="noimg">No screenshot was captured for this screen (fully described in the evidence log).</div>
+    <figcaption><b>p3-s04 · Confirm W-2 Payer Information</b>
+      <span class="meta2">review · 1 click · 2 required fields</span>
+      'Let's double-check your payer info' — re-displays Box B EIN (55-5555555) and Box C Employer's Name (GOODS INC) as editable fields for confirmation; both correct, 1…
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p3-s05-tips-overtime.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p3-s05-tips-overtime.png" alt="Tips and Overtime 2025 deduction screener"></a>
-    <figcaption><b>P3 · 2025 law surfaced</b> Per-employer Tips &amp; Overtime deduction screener (“new deductions … in 2025”).</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p3-s05-tips-overtime.png" alt="ftu-desktop-p3-s05: Tips and Overtime"></a>
+    <figcaption><b>p3-s05 · Tips and Overtime</b>
+      <span class="meta2">form · 1 click · 2 required fields</span>
+      New-for-2025 screener: 'Did you earn any Tips or Overtime from Goods Inc?' — two Yes/No groups (Tips Deduction; Overtime Deduction), both defaulted to 'No' (truthful…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" alt="ftu-desktop-p3-s06: Form W-2 Information Alerts"></a>
+    <figcaption><b>p3-s06 · Form W-2 Information Alerts</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Let's double-check your wages info (Goods Inc)' alerts screen.
+      <span class="tags"><span class="tag warn">flagged</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s07-w2-summary-list.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s07-w2-summary-list.png" alt="ftu-desktop-p3-s07: Your Wages (Form W-2)"></a>
+    <figcaption><b>p3-s07 · Your Wages (Form W-2)</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      W-2 list/management screen: one card 'GOODS INC — Wages $48,062' with Edit/Delete, plus 'Add W-2' for additional W-2s.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s08-wages-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s08-wages-summary.png" alt="ftu-desktop-p3-s08: Wages Summary (W-2)"></a>
+    <figcaption><b>p3-s08 · Wages Summary (W-2)</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      Compact wages summary: 'Goods Inc — Box 1 - Wages $48,062, Box 2 - Fed withheld $3,729', with Edit.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s09-your-income-hub-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s09-your-income-hub.png" alt="ftu-desktop-p3-s09: Your Income"></a>
+    <figcaption><b>p3-s09 · Your Income</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      The 'Your Income' hub — category menu ('Click on any income items that may apply to you'). <a href="assets/ftu-desktop-p3-s09-your-income-hub-full.png" target="_blank" rel="noopener">full-page ↗</a>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s10-cryptocurrency.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s10-cryptocurrency.png" alt="ftu-desktop-p3-s10: Cryptocurrency"></a>
+    <figcaption><b>p3-s10 · Cryptocurrency</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Digital-assets screener: 'Did you receive, sell, exchange, or otherwise dispose of any cryptocurrency during 2025?' single Yes/No, defaulted No (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s11-income-summary-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s11-income-summary-full.png" alt="ftu-desktop-p3-s11: Your 2025 Income Summary"></a>
+    <figcaption><b>p3-s11 · Your 2025 Income Summary</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      PHASE 3 EXIT BOUNDARY.
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">P4 · Deductions &amp; credits <span class="cnt">— 17 screens</span></h3>
+<div class="grid">
+  <figure>
+    <a href="assets/ftu-desktop-p4-s01-pro-support-upsell-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s01-pro-support-upsell.png" alt="ftu-desktop-p4-s01: Continue with a Pro on your side"></a>
+    <figcaption><b>p4-s01 · Continue with a Pro on your side</b>
+      <span class="meta2">upsell · 1 click · 0 required fields</span>
+      First screen of Phase 4 (reached by clicking Continue on the income summary — that click was Phase 3's outbound). <a href="assets/ftu-desktop-p4-s01-pro-support-upsell-full.png" target="_blank" rel="noopener">full-page ↗</a>
+      <span class="tags"><span class="tag money">interstitial · $64.99</span><span class="tag warn">flagged</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s02-halfway-interstitial.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s02-halfway-interstitial.png" alt="ftu-desktop-p4-s02: We've got your income"></a>
+    <figcaption><b>p4-s02 · We've got your income</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      Progress interstitial: 'You're over halfway done!
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p4-s03-deductions-checklist.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p4-s03-deductions-checklist.png" alt="Itemized deduction checklist"></a>
-    <figcaption><b>P4 · Deduction triage</b> One checklist screen routes standard-vs-itemized; unchecked = standard.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p4-s03-deductions-checklist.png" alt="ftu-desktop-p4-s03: Standard or Itemized Deductions"></a>
+    <figcaption><b>p4-s03 · Standard or Itemized Deductions</b>
+      <span class="meta2">form · 1 click · 0 required fields</span>
+      'Do you have any of these deductions?' — a checklist of 7 itemizable categories (Homeowner/1098, donations, medical, taxes paid, investment interest, disaster/theft,…
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p4-s04-standard-deduction.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p4-s04-standard-deduction.png" alt="Standard deduction recommendation $15,750"></a>
-    <figcaption><b>P4 · “Standard is best for you”</b> $15,750 recommendation with a compare link — reassuring, quick.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p4-s04-standard-deduction.png" alt="ftu-desktop-p4-s04: Deductions Summary"></a>
+    <figcaption><b>p4-s04 · Deductions Summary</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'The standard deduction is best for you' — Standard Deduction of $15,750 (correct for a single 2025 filer).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s05-marketplace-health.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s05-marketplace-health.png" alt="ftu-desktop-p4-s05: Marketplace Health Insurance (Form 1095-A)"></a>
+    <figcaption><b>p4-s05 · Marketplace Health Insurance (Form 1095-A)</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Marketplace health insurance (1095-A) Yes/No, defaulted No (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s06-ira-contributions.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s06-ira-contributions.png" alt="ftu-desktop-p4-s06: IRA Contributions"></a>
+    <figcaption><b>p4-s06 · IRA Contributions</b>
+      <span class="meta2">form · 1 click · 2 required fields</span>
+      Two Yes/No groups — 2025 IRA Contributions and 2024 Excess IRA Contributions — both defaulted No (truthful; W-2 401k is explicitly excluded per the screen's own note).
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p4-s07-college-tuition.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p4-s07-college-tuition.png" alt="College expenses screener with no default"></a>
-    <figcaption><b>P4 · The screener chain</b> ~13 one-question screens; this one (college) has no default and forces a click.
-      <span class="tags"><span class="tag warn">no default</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p4-s07-college-tuition.png" alt="ftu-desktop-p4-s07: College Tuition Expenses (Form 1098-T)"></a>
+    <figcaption><b>p4-s07 · College Tuition Expenses (Form 1098-T)</b>
+      <span class="meta2">form · 2 clicks · 1 required field</span>
+      College expenses (1098-T) Yes/No, NO default selection.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s08-student-loan-interest.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s08-student-loan-interest.png" alt="ftu-desktop-p4-s08: Student Loan Interest (Form 1098-E)"></a>
+    <figcaption><b>p4-s08 · Student Loan Interest (Form 1098-E)</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Student loan interest (1098-E) Yes/No, defaulted No (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s09-teacher-expenses.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s09-teacher-expenses.png" alt="ftu-desktop-p4-s09: Teacher (Educator) Expenses"></a>
+    <figcaption><b>p4-s09 · Teacher (Educator) Expenses</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Teacher/educator expenses Yes/No, defaulted No (truthful; Stephen is a Retail Associate).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s10-eic-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s10-eic-summary.png" alt="ftu-desktop-p4-s10: Earned Income Credit Summary"></a>
+    <figcaption><b>p4-s10 · Earned Income Credit Summary</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      EIC auto-evaluated: 'you don't qualify...
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s11-new-car-loan-interest.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s11-new-car-loan-interest.png" alt="ftu-desktop-p4-s11: New Car Loan Interest"></a>
+    <figcaption><b>p4-s11 · New Car Loan Interest</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      New-for-2025 car-loan-interest deduction Yes/No (qualified vehicle purchased after 12/31/2024, US final assembly), defaulted No (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s12-home-energy-credit.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s12-home-energy-credit.png" alt="ftu-desktop-p4-s12: Home Energy Credit"></a>
+    <figcaption><b>p4-s12 · Home Energy Credit</b>
+      <span class="meta2">form · 2 clicks · 2 required fields</span>
+      Home Energy Credit: two Yes/No groups (energy-efficiency improvements [no default] + 2024 carryforward [No default]).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s13-depcare-carryover-forfeit.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s13-depcare-carryover-forfeit.png" alt="ftu-desktop-p4-s13: Dependent Care Carryover and Forfeiture"></a>
+    <figcaption><b>p4-s13 · Dependent Care Carryover and Forfeiture</b>
+      <span class="meta2">form · 1 click · 2 required fields</span>
+      TRIGGERED BY BOX 10 ($5,000 dependent-care benefit on the W-2).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s14-child-care-expenses.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s14-child-care-expenses.png" alt="ftu-desktop-p4-s14: Child Care Expenses"></a>
+    <figcaption><b>p4-s14 · Child Care Expenses</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Work-related child care expenses Yes/No, defaulted No (truthful; no dependents).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s15-common-deductions-credits-hub-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s15-common-deductions-credits-hub-full.png" alt="ftu-desktop-p4-s15: Common Deductions and Credits"></a>
+    <figcaption><b>p4-s15 · Common Deductions and Credits</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Common Deductions and Credits' hub — recap list of the items just screened (IRA, College Tuition, Student Loan Interest, Teacher Expenses, EIC, New Car Loan Interest,…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s16-other-deductions-credits-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s16-other-deductions-credits-full.png" alt="ftu-desktop-p4-s16: Other Deductions and Credits"></a>
+    <figcaption><b>p4-s16 · Other Deductions and Credits</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Other Deductions and Credits' — large opt-in menu of less-common items grouped Health and Family (HSA/MSA/Adoption/Elderly), Home (MCC), Vehicles and Fuel (Clean…
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p4-s17-deductions-credits-summary-full.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p4-s17-deductions-credits-summary-full.png" alt="Deductions and credits summary table"></a>
-    <figcaption><b>P4 · Section summary</b> Full ledger of every deduction/credit line, almost all $0 for this persona.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p4-s17-deductions-credits-summary-full.png" alt="ftu-desktop-p4-s17: Your 2025 Deductions and Credits Summary"></a>
+    <figcaption><b>p4-s17 · Your 2025 Deductions and Credits Summary</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      PHASE 4 EXIT BOUNDARY.
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">P5 · Review — the federal hard stop <span class="cnt">— 5 screens</span></h3>
+<div class="grid">
+  <figure>
+    <a href="assets/ftu-desktop-p5-s01-progress-pro-support-card.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s01-progress-pro-support-card.png" alt="ftu-desktop-p5-s01: We're making great progress"></a>
+    <figcaption><b>p5-s01 · We're making great progress</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      Progress interstitial 'We're making great progress' with an embedded Pro Support $64.99 card (Add Pro Support / Learn More) plus the free 'Continue to Miscellaneous'…
+      <span class="tags"><span class="tag money">passive · $64.99</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p5-s02-misc-forms-topics-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s02-misc-forms-topics-full.png" alt="ftu-desktop-p5-s02: Miscellaneous Forms and Topics"></a>
+    <figcaption><b>p5-s02 · Miscellaneous Forms and Topics</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Miscellaneous Forms and Topics' opt-in menu grouped Payments (Estimated Tax 2025/2026, Extension, Installment Agreement), Personal (IP PIN, Paid Preparer, Third Party…
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p5-s03-refund-maximizer.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p5-s03-refund-maximizer.png" alt="Refund Maximizer choice screen"></a>
-    <figcaption><b>P5 · Refund Maximizer</b> A free deeper-screener offered as a choice — “skip and finish” honored for simple filers.
-      <span class="tags"><span class="tag ok">free feature</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p5-s03-refund-maximizer.png" alt="ftu-desktop-p5-s03: Refund Maximizer"></a>
+    <figcaption><b>p5-s03 · Refund Maximizer</b>
+      <span class="meta2">form · 2 clicks · 1 required field</span>
+      'Refund Maximizer' — a FREE optional deeper-screener ('Included for free') vs 'Skip and finish filing - my taxes are simple.' Chose SKIP per the simple-single-W-2…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p5-s04-check-for-documents.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s04-check-for-documents.png" alt="ftu-desktop-p5-s04: Check for Documents"></a>
+    <figcaption><b>p5-s04 · Check for Documents</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Did you miss any of these common forms?' reminder (Form 1099-INT for interest; 1099-SA/5498-SA for HSA) with jump-links and a single Continue.
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p5-s05-federal-tax-summary-full.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p5-s05-federal-tax-summary-full.png" alt="Federal tax summary showing $512 owed"></a>
-    <figcaption><b>P5 · Federal review</b> Full line-item summary; $512 owed. The federal hard stop — from here the flow
-      enters Final Steps (below).
-      <span class="tags"><span class="tag gate">federal hard stop</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p5-s05-federal-tax-summary.png" alt="ftu-desktop-p5-s05: Federal Tax Summary"></a>
+    <figcaption><b>p5-s05 · Federal Tax Summary</b>
+      <span class="meta2">review · 0 clicks · 0 required fields</span>
+      HARD STOP — TRAVERSAL TERMINAL SCREEN. <a href="assets/ftu-desktop-p5-s05-federal-tax-summary-full.png" target="_blank" rel="noopener">full-page ↗</a>
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">ST · State branch (scope extension): WY probe + full CA return → the $15.99 paywall <span class="cnt">— 29 screens</span></h3>
+<div class="grid">
+  <figure>
+    <a href="assets/ftu-desktop-p6-s01-next-up-state.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s01-next-up-state.png" alt="ftu-desktop-p6-s01: Next up is your state return"></a>
+    <figcaption><b>p6-s01 · Next up is your state return</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      Reached via 'Continue' from the Federal Tax Summary.
+    </figcaption>
   </figure>
   <figure>
+    <a href="assets/ftu-desktop-p6-s02-state-of-residence-wy.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s02-state-of-residence-wy.png" alt="ftu-desktop-p6-s02: 2025 State of Residence"></a>
+    <figcaption><b>p6-s02 · 2025 State of Residence</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Did you live in Wyoming?' — pre-filled Yes (from the WY address).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s03-lived-all-year.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s03-lived-all-year.png" alt="ftu-desktop-p6-s03: Resident State"></a>
+    <figcaption><b>p6-s03 · Resident State</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Did you live there all year?' (Wyoming) — pre-filled Yes (truthful full-year resident).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s04-employment-state.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s04-employment-state.png" alt="ftu-desktop-p6-s04: Employment State"></a>
+    <figcaption><b>p6-s04 · Employment State</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Where did you make money?
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s05-state-returns-wy-no-return-needed-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s05-state-returns-wy-no-return-needed.png" alt="ftu-desktop-p6-s05: Your State Tax Returns"></a>
+    <figcaption><b>p6-s05 · Your State Tax Returns</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      KEY STATE FINDING. Green info message verbatim: 'Good news! <a href="assets/ftu-desktop-p6-s05-state-returns-wy-no-return-needed-full.png" target="_blank" rel="noopener">full-page ↗</a>
+      <span class="tags"><span class="tag money">passive · none shown on this screen (no state return created</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s06-choose-state-return.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s06-choose-state-return.png" alt="ftu-desktop-p6-s06: Choose a State Return"></a>
+    <figcaption><b>p6-s06 · Choose a State Return</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      First state-picker attempt.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s07-choose-state-california.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s07-choose-state-california.png" alt="ftu-desktop-p6-s07: Choose a State Return"></a>
+    <figcaption><b>p6-s07 · Choose a State Return</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      State picker again (via 'Add a State Return'); this time selected CALIFORNIA to walk the paid state flow to its paywall (Vivian's request).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s08-ca-residency-nonresident.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s08-ca-residency-nonresident.png" alt="ftu-desktop-p6-s08: CA Residency Information"></a>
+    <figcaption><b>p6-s08 · CA Residency Information</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'What's your CA residency status?' — FTU pre-selected NONRESIDENT ('Based on what you've told us...
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s09-ca-nonresident-home-days.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s09-ca-nonresident-home-days.png" alt="ftu-desktop-p6-s09: CA Part-Year/Nonresident Home"></a>
+    <figcaption><b>p6-s09 · CA Part-Year/Nonresident Home</b>
+      <span class="meta2">form · 1 click · 2 required fields</span>
+      'Let's get some info about 2025' — primary home state (set Wyoming) + 'Number of days in California for ANY purpose' (set 0, truthful; WY-resident remote worker).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s10-ca-nonresident-residence-wy.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s10-ca-nonresident-residence-wy.png" alt="ftu-desktop-p6-s10: CA Nonresident Information"></a>
+    <figcaption><b>p6-s10 · CA Nonresident Information</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Where are you a resident?' — State of Residence dropdown, set Wyoming (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s11-ca-prior-residency.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s11-ca-prior-residency.png" alt="ftu-desktop-p6-s11: CA Prior Residency"></a>
+    <figcaption><b>p6-s11 · CA Prior Residency</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Did you live in CA before 2025?' — default No (truthful).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s12-ca-basic-info.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s12-ca-basic-info.png" alt="ftu-desktop-p6-s12: CA Tax Return Information"></a>
+    <figcaption><b>p6-s12 · CA Tax Return Information</b>
+      <span class="meta2">form · 2 clicks · 2 required fields</span>
+      'Let's get some basic CA info' — 2024 CA return (default Yes → changed to No, truthful) + Name Change (default No).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s13-ca-special-situations-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s13-ca-special-situations-full.png" alt="ftu-desktop-p6-s13: CA Special Situations"></a>
+    <figcaption><b>p6-s13 · CA Special Situations</b>
+      <span class="meta2">form · 1 click · 9 required fields</span>
+      'Do you have any special situations?' — all 9+ groups defaulted No (all correct).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s14-ca-income-differences-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s14-ca-income-differences-full.png" alt="ftu-desktop-p6-s14: CA Common Tax Law Differences"></a>
+    <figcaption><b>p6-s14 · CA Common Tax Law Differences</b>
+      <span class="meta2">form · 1 click · 5 required fields</span>
+      'Let's check for CA income differences' — Moving Expenses, Paid Family Leave, Alimony Received/Paid, CA HOPE Trust (contribute + have), plus optional CA…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s15-ca-uncommon-differences.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s15-ca-uncommon-differences.png" alt="ftu-desktop-p6-s15: CA Uncommon Tax Law Differences"></a>
+    <figcaption><b>p6-s15 · CA Uncommon Tax Law Differences</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      Single 'check for uncommon income adjustments?' Yes/No, default No.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s16-ca-itemized-deductions.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s16-ca-itemized-deductions.png" alt="ftu-desktop-p6-s16: CA Itemized Deductions"></a>
+    <figcaption><b>p6-s16 · CA Itemized Deductions</b>
+      <span class="meta2">form · 1 click · 3 required fields</span>
+      'Do you have any of these CA itemized deductions?' — Job Expenses, Casualty Losses, Homeowner expenses limited on federal; all default No.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s17-ca-itemized-detail.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s17-ca-itemized-detail.png" alt="ftu-desktop-p6-s17: CA Itemized Deductions (detail)"></a>
+    <figcaption><b>p6-s17 · CA Itemized Deductions (detail)</b>
+      <span class="meta2">form · 1 click · 0 required fields</span>
+      'Let's maximize your CA itemized deductions' — optional $ fields (tax prep fees, donation carryover, misc description+amount); all left blank.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s18-ca-standard-deduction.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s18-ca-standard-deduction.png" alt="ftu-desktop-p6-s18: Deductions Summary (CA)"></a>
+    <figcaption><b>p6-s18 · Deductions Summary (CA)</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'You're getting the CA standard deduction' — CA Standard Deduction $5,706 (full-year-equivalent; to be adjusted by the nonresident percentage).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s19-ca-nonresident-income-allocation.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s19-ca-nonresident-income-allocation.png" alt="ftu-desktop-p6-s19: CA Part-Year/Nonresident Income"></a>
+    <figcaption><b>p6-s19 · CA Part-Year/Nonresident Income</b>
+      <span class="meta2">form · 1 click · 2 required fields</span>
+      'How much did you earn in CA?' income allocation: federal amounts shown (Wages $48,062, Taxable Dependent Care $5,000); entered CA-source amount = 0 for each (truthful;…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s20-ca-family-dependent-credits.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s20-ca-family-dependent-credits.png" alt="ftu-desktop-p6-s20: CA Family &amp; Dependent Credits"></a>
+    <figcaption><b>p6-s20 · CA Family &amp; Dependent Credits</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Do you have any CA family or dependent credits?' — Joint Custody Head of Household Credit Yes/No, default No.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s21-ca-eic-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s21-ca-eic-summary.png" alt="ftu-desktop-p6-s21: CA Earned Income Credit Summary"></a>
+    <figcaption><b>p6-s21 · CA Earned Income Credit Summary</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      CA EIC auto-computed: 'Unfortunately, you don't qualify for the California Earned Income Credit.' 1 click Save and Continue.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s22-ca-misc-topics-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s22-ca-misc-topics-full.png" alt="ftu-desktop-p6-s22: CA Miscellaneous Topics"></a>
+    <figcaption><b>p6-s22 · CA Miscellaneous Topics</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'CA Miscellaneous Topics' opt-in menu (estimated payments, College Access Tax Credit, AMT credit, rare credits, withholding forms, real-estate withholding, voluntary…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s23-ca-health-insurance.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s23-ca-health-insurance.png" alt="ftu-desktop-p6-s23: CA Health Insurance Coverage"></a>
+    <figcaption><b>p6-s23 · CA Health Insurance Coverage</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Since you're filing a nonresident California return, you aren't required to enter any health insurance information.' 1 click Save and Continue.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s24-ca-health-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s24-ca-health-summary.png" alt="ftu-desktop-p6-s24: CA Health Insurance Coverage Summary"></a>
+    <figcaption><b>p6-s24 · CA Health Insurance Coverage Summary</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      'Good News! Since you're not a resident of California, you don't owe any additional tax for health care coverage.' 1 click Continue.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s25-ca-info-to-print.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s25-ca-info-to-print.png" alt="ftu-desktop-p6-s25: CA Info to Print"></a>
+    <figcaption><b>p6-s25 · CA Info to Print</b>
+      <span class="meta2">form · 1 click · 4 required fields</span>
+      'What info should we print?' — Print Birthday (default Yes), Print Email (No), Voter Registration Info (No), Health Care Info (No).
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s26-california-tax-summary-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s26-california-tax-summary-full.png" alt="ftu-desktop-p6-s26: California Tax Summary"></a>
+    <figcaption><b>p6-s26 · California Tax Summary</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      CA return summary: Federal AGI $53,062; CA additions $0; CA subtractions $0; CA AGI $0; CA deduction $0; CA taxable income $0; TOTAL CALIFORNIA TAX $0; CA withholding…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s27-more-state-returns.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s27-more-state-returns.png" alt="ftu-desktop-p6-s27: More State Returns"></a>
+    <figcaption><b>p6-s27 · More State Returns</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Do you need to prepare another state tax return?' — default No.
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s28-reinforce-state-value.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s28-reinforce-state-value.png" alt="ftu-desktop-p6-s28: Reinforce State Value"></a>
+    <figcaption><b>p6-s28 · Reinforce State Value</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      'Here's what you're getting with your CA return!' value-reinforcement recap (green checkmarks: E-file, Accuracy guarantee, Itemized deductions, Personal exemptions, Max…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s29-order-products-15.99-paywall-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s29-order-products-cart-15.99.png" alt="ftu-desktop-p6-s29: Order Products"></a>
+    <figcaption><b>p6-s29 · Order Products</b>
+      <span class="meta2">upsell · 0 clicks · 0 required fields</span>
+      THE $15.99 STATE PAYWALL — captured. <a href="assets/ftu-desktop-p6-s29-order-products-15.99-paywall-full.png" target="_blank" rel="noopener">full-page ↗</a>
+      <span class="tags"><span class="tag money">hard_gate · California State Return $15.99</span></span>
+    </figcaption>
+  </figure>
+</div>
+<h3 class="ph">FS · Final Steps (scope extension): order → review → the completion edge <span class="cnt">— 13 screens</span></h3>
+<div class="grid">
+  <figure>
     <a href="assets/ftu-desktop-p7-s01-order-products-before-removal.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s01-order-products-before-removal.png" alt="Order Products page with California return in cart at $15.99"></a>
-    <figcaption><b>FS · Step 1: Order Products</b> The checkout as first encountered — Federal FREE, CA return $15.99 in
-      the cart (later removed to walk the free path).
-      <span class="tags"><span class="tag money">$15.99 in cart</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s01-order-products-before-removal.png" alt="ftu-desktop-p7-s01: Order Products (resume; CA in cart)"></a>
+    <figcaption><b>p7-s01 · Order Products (resume; CA in cart)</b>
+      <span class="meta2">upsell · 1 click · 0 required fields</span>
+      Resume point after human re-auth #4 (~22h gap): 'Continue 2025 Tax Return' landed directly back on Order Products with the CA return still in the cart (Federal FREE +…
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s02-remove-ca-retention-dialog.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s02-remove-ca-retention-dialog.png" alt="ftu-desktop-p7-s02: Remove CA return retention dialog"></a>
+    <figcaption><b>p7-s02 · Remove CA return retention dialog</b>
+      <span class="meta2">interstitial · 1 click · 0 required fields</span>
+      Save-the-sale modal on cart removal.
+      <span class="tags"><span class="tag money">interstitial · n/a (retention of the $15.99 item)</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s03-order-products-after-removal.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s03-order-products-after-removal.png" alt="ftu-desktop-p7-s03: Order Products (after removal, $0.00)"></a>
+    <figcaption><b>p7-s03 · Order Products (after removal, $0.00)</b>
+      <span class="meta2">upsell · 1 click · 0 required fields</span>
+      Cart now Federal FREE, Total $0.00 — the free federal path is real: no product fee, and (seen at s05) no payment instrument required.
+      <span class="tags"><span class="tag money">passive · $15.99 (add-back)</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s04-audit-defense-interstitial.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s04-audit-defense-interstitial.png" alt="ftu-desktop-p7-s04: Ultimate peace of mind"></a>
+    <figcaption><b>p7-s04 · Ultimate peace of mind</b>
+      <span class="meta2">upsell · 1 click · 0 required fields</span>
+      'Ultimate peace of mind' — dedicated Audit Defense interstitial ($19.99, 3-year coverage claim, tax debt relief / identity theft / denied credits bullets).
+      <span class="tags"><span class="tag money">interstitial · $19.99</span><span class="tag warn">flagged</span></span>
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s05-order-summary-0-dollars.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s05-order-summary-0-dollars.png" alt="Order summary, total $0.00, no payment form"></a>
-    <figcaption><b>FS · Order Summary — $0.00</b> “Your federal return will be prepared and e-filed for free!” No payment
-      form appears at a zero cart.
-      <span class="tags"><span class="tag ok">instrument-free</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s05-order-summary-0-dollars.png" alt="ftu-desktop-p7-s05: Order Summary / Method of Payment"></a>
+    <figcaption><b>p7-s05 · Order Summary / Method of Payment</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      Order Summary at $0.00: 'Congratulations!
+      <span class="tags"><span class="tag money">passive · $15.99</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s06-federal-tax-payment-options.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s06-federal-tax-payment-options.png" alt="ftu-desktop-p7-s06: Federal Tax Payment (pay when e-file vs on my own)"></a>
+    <figcaption><b>p7-s06 · Federal Tax Payment (pay when e-file vs on my own)</b>
+      <span class="meta2">form · 2 clicks · 1 required field</span>
+      'Pay your $512 of federal taxes' — two options, none pre-selected: 'Pay when I e-file (Bank account or credit card)' vs 'Pay on my own (We'll give you more information…
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s07-self-pay-methods.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s07-self-pay-methods.png" alt="How to pay the IRS: four self-pay methods"></a>
-    <figcaption><b>FS · Paying the $512 to the IRS</b> Card via third party (+2.5% fee, listed first), mail voucher
-      1040-V (chosen), IRS online account, or free Direct Pay (listed last).
-      <span class="tags"><span class="tag money">2.5% surcharge</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s07-self-pay-methods.png" alt="ftu-desktop-p7-s07: Federal Tax Payment (self-pay methods)"></a>
+    <figcaption><b>p7-s07 · Federal Tax Payment (self-pay methods)</b>
+      <span class="meta2">form · 2 clicks · 1 required field</span>
+      'How do you want to pay your $512?' — four self-pay methods: card via third party (2.5% fee — a monetization-adjacent surcharge), MAIL VOUCHER (Form 1040-V), IRS online…
+      <span class="tags"><span class="tag money">passive · 2.5% surcharge</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s08-payment-method-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s08-payment-method-summary.png" alt="ftu-desktop-p7-s08: Refund / Payment Method Summary"></a>
+    <figcaption><b>p7-s08 · Refund / Payment Method Summary</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      'Double check your payment info' — confirms the $512 will be mailed with Form 1040-V ('We'll tell you how to do that later'), with a link back if direct debit is…
+    </figcaption>
+  </figure>
+  <figure>
+    <div class="noimg">Screenshot withheld — screen displays an account phone number. (Choice made: “None” — no phone sent to the IRS.)</div>
+    <figcaption><b>p7-s09 · Phone Number Sent to IRS</b>
+      <span class="meta2">form · 1 click · 1 required field</span>
+      'Send phone number to IRS?' — options: the account phone on file / Other / NONE, with NONE pre-selected.
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s10-tax-return-alerts-full.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s10-tax-return-alerts-full.png" alt="Final tax return alerts screen"></a>
-    <figcaption><b>FS · Final alerts</b> Yellow advisories before review: the $5,000 dependent-care add-back explained,
-      the invalid-EIN e-file warning, and the unpurchased CA return raised as an alert.</figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s10-tax-return-alerts-full.png" alt="ftu-desktop-p7-s10: Tax Return Alerts"></a>
+    <figcaption><b>p7-s10 · Tax Return Alerts</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      Final alerts check, three yellow advisories: (1) Dependent Care Benefits Added to Income — transparent explanation of the $5,000 add-back with jump-links; (2) Invalid…
+      <span class="tags"><span class="tag money">passive · n/a ($15.99 implied)</span></span>
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s11-review-your-tax-return.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s11-review-your-tax-return.png" alt="Step 2: review your tax return"></a>
-    <figcaption><b>FS · Step 2: Review</b> View/download the federal PDF — with a CA purchase prompt occupying “Step 2”
-      of the review checklist.
-      <span class="tags"><span class="tag warn">nudge-as-step</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s11-review-your-tax-return.png" alt="ftu-desktop-p7-s11: Review Your Tax Return"></a>
+    <figcaption><b>p7-s11 · Review Your Tax Return</b>
+      <span class="meta2">review · 1 click · 0 required fields</span>
+      Step 2 of the Final Steps stepper: 'Review your tax return' — Step 1 = View/Download the federal PDF; Step 2 = a CA purchase prompt occupying a numbered review step…
+      <span class="tags"><span class="tag money">passive · n/a ($15.99 implied)</span></span>
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s12-not-eligible-efile.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s12-not-eligible-efile.png" alt="Return not eligible for e-file, routed to mail"></a>
-    <figcaption><b>FS · Filing method</b> E-file pre-validated and blocked (invalid test EIN) — “we’ll help you mail your
-      return instead.”
-      <span class="tags"><span class="tag ok">protective validation</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s12-not-eligible-efile.png" alt="ftu-desktop-p7-s12: Federal Filing Method"></a>
+    <figcaption><b>p7-s12 · Federal Filing Method</b>
+      <span class="meta2">info · 1 click · 0 required fields</span>
+      Filing-method decision made BY the product: e-file ineligible (invalid EIN), routed to the mail path.
+      <span class="tags"><span class="tag warn">flagged</span></span>
+    </figcaption>
   </figure>
   <figure>
     <a href="assets/ftu-desktop-p7-s13-TERMINAL-finish-tax-return.png" target="_blank" rel="noopener">
-      <img loading="lazy" src="assets/ftu-desktop-p7-s13-TERMINAL-finish-tax-return.png" alt="Final screen: Finish Tax Return button with attestation checkbox"></a>
-    <figcaption><b>FS · Step 3: the very last screen</b> “Let’s send in your tax return!” — attestation checkbox +
-      the “Finish Tax Return” control. Captured, never clicked: the end of the S2C funnel.
-      <span class="tags"><span class="tag gate">traversal terminal</span></span></figcaption>
+      <img loading="lazy" src="assets/ftu-desktop-p7-s13-TERMINAL-finish-tax-return.png" alt="ftu-desktop-p7-s13: Submit Return for Processing"></a>
+    <figcaption><b>p7-s13 · Submit Return for Processing</b>
+      <span class="meta2">review · 0 clicks · 1 required field</span>
+      THE 'C' EDGE OF S2C, captured: the last screen a filer sees before completing their return.
+      <span class="tags"><span class="tag gate">traversal terminal</span></span>
+    </figcaption>
   </figure>
 </div>
 
