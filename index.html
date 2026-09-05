@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FreeTaxUSA S2C Teardown — Interim Findings</title>
+<style>
+  :root{
+    --ink:#1a1d21; --muted:#5c6470; --faint:#8a93a0;
+    --bg:#fafaf8; --card:#ffffff; --line:#e5e7ea;
+    --accent:#3b5bdb; --accent-ink:#2f4ab8;
+    --warn-bg:#fff4e5; --warn-ink:#8a5a00;
+    --money-bg:#eef4ff; --money-ink:#2f4ab8;
+    --gate-bg:#fdecec; --gate-ink:#a13030;
+    --ok-bg:#e9f7ef; --ok-ink:#1e7a45;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e8eaed; --muted:#a7afba; --faint:#7d8590;
+      --bg:#111417; --card:#1a1e23; --line:#2a3038;
+      --accent:#7b96ff; --accent-ink:#9ab0ff;
+      --warn-bg:#33270f; --warn-ink:#e8b45f;
+      --money-bg:#1b2540; --money-ink:#9ab0ff;
+      --gate-bg:#3a1f1f; --gate-ink:#ff9d9d;
+      --ok-bg:#15301f; --ok-ink:#6fce96;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  header{padding:56px 0 8px}
+  .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+  h1{font-size:34px;line-height:1.15;margin:.3em 0 .2em;letter-spacing:-.02em}
+  .sub{color:var(--muted);max-width:62ch}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+  .chip{font-size:12.5px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--card)}
+  .chip.b{border-color:transparent;background:var(--money-bg);color:var(--money-ink);font-weight:600}
+  h2{font-size:22px;margin:56px 0 6px;letter-spacing:-.01em}
+  h2 .n{color:var(--faint);font-weight:500;margin-right:.4em}
+  .lede{color:var(--muted);margin:0 0 22px;max-width:66ch}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .tablewrap{overflow-x:auto;border-radius:10px}
+  th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:600;background:transparent}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{font-weight:700;border-top:2px solid var(--line)}
+  .findings{counter-reset:f;display:grid;gap:14px;padding:0;margin:0;list-style:none}
+  .findings li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px 56px;position:relative}
+  .findings li::before{counter-increment:f;content:counter(f);position:absolute;left:18px;top:16px;
+    width:26px;height:26px;border-radius:50%;background:var(--money-bg);color:var(--money-ink);
+    font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .findings b{display:block;margin-bottom:2px}
+  .findings p{margin:0;color:var(--muted);font-size:14.5px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  figure a{display:block;background:#fff;border-bottom:1px solid var(--line)}
+  figure img{width:100%;height:210px;object-fit:cover;object-position:top;display:block}
+  figure.tall img{height:300px}
+  figcaption{padding:12px 14px 14px;font-size:13.5px;color:var(--muted)}
+  figcaption b{color:var(--ink);display:block;font-size:14px;margin-bottom:2px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px}
+  .tag.money{background:var(--money-bg);color:var(--money-ink)}
+  .tag.gate{background:var(--gate-bg);color:var(--gate-ink)}
+  .tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+  .tag.ok{background:var(--ok-bg);color:var(--ok-ink)}
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:20px}
+  .hero a{display:block;background:#fff}
+  .hero img{width:100%;max-height:560px;object-fit:cover;object-position:top;display:block;border-bottom:1px solid var(--line)}
+  .hero .cap{padding:16px 18px;font-size:14.5px;color:var(--muted)}
+  .callout{border-left:4px solid var(--accent);background:var(--card);border-radius:0 10px 10px 0;
+    padding:14px 18px;margin:20px 0;font-size:15px}
+  .callout.warn{border-left-color:var(--warn-ink)}
+  .foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:13px;max-width:75ch}
+  .foot p{margin:.4em 0}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+  a{color:var(--accent-ink)}
+  @media (max-width:640px){ h1{font-size:27px} .findings li{padding-left:52px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Interim findings · 1 of 4 traversals</div>
+  <h1>FreeTaxUSA start-to-complete teardown</h1>
+  <p class="sub">A screen-by-screen walk of FreeTaxUSA’s 2025 filing flow (desktop web) with a synthetic
+  single-W-2 filer — every screen captured, every monetization moment inventoried, stopped hard before any
+  filing or payment action.</p>
+  <div class="meta">
+    <span class="chip">Captured Sept 4, 2026 · live off-season build (TY2025)</span>
+    <span class="chip">Synthetic persona · single filer · one W-2 · standard deduction</span>
+    <span class="chip b">Federal path: 41 screens · 44 clicks · 44 required fields</span>
+    <span class="chip b">State branch: +29 screens → $15.99 paywall</span>
+  </div>
+</header>
+
+<h2><span class="n">01</span>Headline metrics — federal path</h2>
+<p class="lede">One traversal, desktop web, manual W-2 entry (import declined per protocol). A “screen” is any
+full content change the user must act on; “clicks” is the minimum free-path actions including upsell declines.
+Auth/sign-in screens are excluded (tooling artifact — see methodology).</p>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>Phase</th><th>Screens</th><th>Clicks to advance</th><th>Required fields</th><th>Paid-offer moments</th></tr></thead>
+  <tbody>
+    <tr><td>1 · Landing → return hub</td><td>2</td><td>2</td><td>0</td><td>1 (pricing wall on landing)</td></tr>
+    <tr><td>2 · Personal info</td><td>6</td><td>6</td><td>11</td><td>1 (Deluxe $7.99 interstitial)</td></tr>
+    <tr><td>3 · Income / W-2</td><td>11</td><td>12</td><td>20</td><td>0</td></tr>
+    <tr><td>4 · Deductions &amp; credits</td><td>17</td><td>19</td><td>12</td><td>1 (Pro Support $64.99 interstitial)</td></tr>
+    <tr><td>5 · Review (hard stop)</td><td>5</td><td>5</td><td>1</td><td>1 (Pro Support card)</td></tr>
+    <tr class="total"><td>Federal total</td><td>41</td><td>44</td><td>44</td><td>4</td></tr>
+    <tr><td>State branch (WY probe + full CA return)</td><td>29</td><td>29</td><td>38</td><td>1 hard gate ($15.99 checkout)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="lede" style="margin-top:10px">Outcome for this persona: AGI $53,062 · standard deduction $15,750 ·
+federal tax $4,241 · withholding $3,729 · <b>$512 owed</b>. The $5,000 dependent-care benefit (W-2 box 10) was
+correctly added back to taxable wages for a filer with no dependents.</p>
+
+<h2><span class="n">02</span>What matters most</h2>
+<ol class="findings">
+  <li><b>The $15.99 state fee is a pure e-file access fee — charged even on a $0 return.</b>
+    <p>A California nonresident return with zero CA-source income and $0 CA tax still lands at a checkout of
+    “Federal FREE + California State Return $15.99.” FreeTaxUSA monetizes the act of filing a state return,
+    not tax complexity.</p></li>
+  <li><b>The paywall is state-dependent — no-income-tax states never see it.</b>
+    <p>For the Wyoming-resident persona, FTU says “Good news! Wyoming doesn’t require you to file a state
+    income tax return” and refuses to even create a chargeable WY return. Filers in WY, TX, FL, NV, WA, SD, AK,
+    TN escape the fee entirely; everyone else pays $15.99 per state to e-file.</p></li>
+  <li><b>Paid interstitials sit at section seams, tuned to momentum.</b>
+    <p>Deluxe ($7.99) fires right after Personal info; a full-screen Pro Support gate ($64.99) sits exactly on the
+    Income→Deductions transition; Pro appears again as a card before Review. All declinable in one click — but
+    Pro Support is pitched three separate times in one filing.</p></li>
+  <li><b>The W-2 form is the heaviest single screen in the product.</b>
+    <p>~13 required fields plus ~40 optional ones on one page — a full paper-W-2 replica. Contrast candidate for
+    any competitor that chunks W-2 entry into steps.</p></li>
+  <li><b>Credits are screened one question per screen — ~13 screens of yes/no.</b>
+    <p>Most default to “No,” but two (college expenses, home energy) have no default and force an explicit click.
+    Long but low-effort; it inflates screen count more than actual effort.</p></li>
+  <li><b>Validation is soft where it should be, hard where it must be.</b>
+    <p>ZIP↔state mismatches hard-block with a plain-language message; an invalid-format EIN produces a yellow
+    advisory (“an alert doesn’t mean you’ve done something wrong”) that lets the filer proceed. Good pattern for
+    edge-case data.</p></li>
+  <li><b>2025 tax-law changes are surfaced as dedicated screens.</b>
+    <p>Per-employer Tips &amp; Overtime deduction screener, new-car-loan-interest deduction, and the digital-asset
+    question each get their own screen turn.</p></li>
+  <li><b>Sessions die after ~6–8 idle minutes.</b>
+    <p>Server-side timeout with full credential re-entry and a forced re-prompt (<code>?PRMPT</code>) on the homepage
+    sign-in link — real friction for any filer who steps away mid-return.</p></li>
+</ol>
+
+<h2><span class="n">03</span>The monetization map</h2>
+<p class="lede">Every paid-offer moment observed, in flow order. Verbatim prices; decline path was always a
+single click on this run.</p>
+<div class="grid">
+  <figure class="tall">
+    <a href="assets/ftu-desktop-p1-s01-landing-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p1-s01-landing-full.png" alt="FreeTaxUSA landing page with Federal $0, State $15.99 pricing"></a>
+    <figcaption><b>Landing pricing wall</b> “Federal $0 · State $15.99” hero, four “$0 + $15.99 per state” tiers,
+      Deluxe $7.99, Pro $64.99, Audit Defense $19.99 — plus an “If it’s free, how do you make money?” section.
+      <span class="tags"><span class="tag money">passive</span><span class="tag money">$15.99/state</span></span>
+    </figcaption>
+  </figure>
+  <figure class="tall">
+    <a href="assets/ftu-desktop-p2-s05-deluxe-upsell-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p2-s05-deluxe-upsell-full.png" alt="Deluxe $7.99 upgrade interstitial"></a>
+    <figcaption><b>Deluxe interstitial — after Personal info</b> “Deluxe gives you more … Excellent Value – Only $7.99.”
+      CTA “Upgrade to Deluxe”; free path is a single “Continue.”
+      <span class="tags"><span class="tag money">interstitial</span><span class="tag money">$7.99</span><span class="tag ok">1-click decline</span></span>
+    </figcaption>
+  </figure>
+  <figure class="tall">
+    <a href="assets/ftu-desktop-p4-s01-pro-support-upsell-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s01-pro-support-upsell-full.png" alt="Pro Support $64.99 full-screen interstitial"></a>
+    <figcaption><b>Pro Support gate — Income→Deductions seam</b> “Continue with a Pro on your side … only $64.99.”
+      Full-screen, two Add buttons, benefits grid; free path is the bottom “Continue.”
+      <span class="tags"><span class="tag money">interstitial</span><span class="tag money">$64.99</span><span class="tag ok">1-click decline</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p5-s01-progress-pro-support-card.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s01-progress-pro-support-card.png" alt="Pro Support card on progress screen before review"></a>
+    <figcaption><b>Pro Support, third exposure — before Review</b> Embedded card on the “We’re making great progress”
+      interstitial. Same $64.99 offer, softer placement.
+      <span class="tags"><span class="tag money">passive card</span><span class="tag money">$64.99</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s28-reinforce-state-value.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s28-reinforce-state-value.png" alt="Reinforce State Value screen before checkout"></a>
+    <figcaption><b>“Reinforce State Value” — the pre-charge softener</b> A checkmark recap of everything the CA return
+      includes, shown immediately before the price appears. The page is literally named <code>Reinforce State Value</code>.
+      <span class="tags"><span class="tag warn">pre-paywall</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s29-order-products-cart-15.99.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s29-order-products-cart-15.99.png" alt="Order Products checkout with $15.99 state return in cart"></a>
+    <figcaption><b>The paywall — “Order Products”</b> Cart: Federal FREE · California State Return $15.99 · Total $15.99,
+      beside a cross-sell grid (Audit Defense $19.99 “10K+ bought in past week,” Deluxe $7.99, Pro $64.99, printed copy
+      $8.96, bound $17.96). Traversal hard-stopped here — beyond this is payment entry.
+      <span class="tags"><span class="tag gate">hard gate</span><span class="tag money">$15.99</span></span>
+    </figcaption>
+  </figure>
+</div>
+
+<h2><span class="n">04</span>The state-fee story, end to end</h2>
+<p class="lede">The scope was extended beyond the federal-only default specifically to answer: <i>what does the
+$15.99 actually buy, and who has to pay it?</i></p>
+<div class="callout">
+  <b>Wyoming resident → no fee possible.</b> FTU detects residency, announces no state return is required, and
+  bounces an explicit attempt to add a WY return. &nbsp;→&nbsp; <b>Add a California nonresident return</b> (the
+  persona’s employer is a CA company) → ~22 screens of residency, allocation ($0 CA-source income), CA-specific
+  screeners → a valid CA return computing <b>$0 tax</b> → checkout: <b>$15.99 anyway.</b>
+</div>
+<div class="hero">
+  <a href="assets/ftu-desktop-p6-s29-order-products-15.99-paywall-full.png" target="_blank" rel="noopener">
+    <img loading="lazy" src="assets/ftu-desktop-p6-s29-order-products-15.99-paywall-full.png"
+      alt="Full Order Products page: Federal Return FREE, California State Return $15.99, add-on grid with Audit Defense, Deluxe, Pro Support"></a>
+  <div class="cap"><b>The terminal artifact:</b> the full “Unlock more benefits” order page. Federal stays free; the
+  state return is the product. For a filer whose state return is <i>required</i>, this is an unavoidable gate to e-file —
+  even at zero state liability. (Run stopped here; no payment or filing action was taken.)</div>
+</div>
+<div class="grid" style="margin-top:18px">
+  <figure>
+    <a href="assets/ftu-desktop-p6-s05-state-returns-wy-no-return-needed.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s05-state-returns-wy-no-return-needed.png" alt="Wyoming doesn't require a state return message"></a>
+    <figcaption><b>WY: “Good news!”</b> No state return required — and FTU won’t create a chargeable one.
+      <span class="tags"><span class="tag ok">no fee in no-tax states</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s19-ca-nonresident-income-allocation.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s19-ca-nonresident-income-allocation.png" alt="CA nonresident income allocation screen"></a>
+    <figcaption><b>CA income allocation</b> Federal wages shown; CA-source amount entered as $0 — the return stays
+      at zero liability.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p6-s26-california-tax-summary-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p6-s26-california-tax-summary-full.png" alt="California tax summary all zeros"></a>
+    <figcaption><b>CA Tax Summary: $0 across the board</b> …and still $15.99 at the next screen’s checkout.
+      <span class="tags"><span class="tag warn">fee ≠ liability</span></span></figcaption>
+  </figure>
+</div>
+
+<h2><span class="n">05</span>Flow gallery — selected screens by phase</h2>
+<p class="lede">Click any image for the full capture. Identity-bearing screens (taxpayer form, personal summary,
+filled W-2 header) are intentionally omitted from this public page.</p>
+<div class="grid">
+  <figure>
+    <a href="assets/ftu-desktop-p1-s02-welcome-back-hub.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p1-s02-welcome-back-hub.png" alt="Return hub with Begin 2025 Tax Return"></a>
+    <figcaption><b>P1 · Return hub</b> Single primary CTA; section rail (Personal → Final Steps) previews the whole journey.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p2-s02-filing-status.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p2-s02-filing-status.png" alt="Filing status selection"></a>
+    <figcaption><b>P2 · Filing status</b> Single-select with “help me decide” escape hatch; sensible defaults carried forward.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s02-w2-entry-method-fork.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s02-w2-entry-method-fork.png" alt="W-2 entry method fork: manual, upload, scan"></a>
+    <figcaption><b>P3 · The import fork</b> Manual / Upload a file / Scan with phone. Manual chosen for comparability.
+      <span class="tags"><span class="tag ok">import offered</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s06-w2-alert-invalid-ein.png" alt="Invalid EIN advisory alert"></a>
+    <figcaption><b>P3 · Advisory, not a wall</b> Invalid-format EIN triggers a yellow alert that still lets the filer continue.
+      <span class="tags"><span class="tag ok">soft validation</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s09-your-income-hub-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s09-your-income-hub-full.png" alt="Your Income category hub"></a>
+    <figcaption><b>P3 · Income hub</b> All income categories on one menu; W-2 shows its saved amount inline.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p3-s05-tips-overtime.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p3-s05-tips-overtime.png" alt="Tips and Overtime 2025 deduction screener"></a>
+    <figcaption><b>P3 · 2025 law surfaced</b> Per-employer Tips &amp; Overtime deduction screener (“new deductions … in 2025”).</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s03-deductions-checklist.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s03-deductions-checklist.png" alt="Itemized deduction checklist"></a>
+    <figcaption><b>P4 · Deduction triage</b> One checklist screen routes standard-vs-itemized; unchecked = standard.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s04-standard-deduction.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s04-standard-deduction.png" alt="Standard deduction recommendation $15,750"></a>
+    <figcaption><b>P4 · “Standard is best for you”</b> $15,750 recommendation with a compare link — reassuring, quick.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s07-college-tuition.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s07-college-tuition.png" alt="College expenses screener with no default"></a>
+    <figcaption><b>P4 · The screener chain</b> ~13 one-question screens; this one (college) has no default and forces a click.
+      <span class="tags"><span class="tag warn">no default</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p4-s17-deductions-credits-summary-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p4-s17-deductions-credits-summary-full.png" alt="Deductions and credits summary table"></a>
+    <figcaption><b>P4 · Section summary</b> Full ledger of every deduction/credit line, almost all $0 for this persona.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p5-s03-refund-maximizer.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s03-refund-maximizer.png" alt="Refund Maximizer choice screen"></a>
+    <figcaption><b>P5 · Refund Maximizer</b> A free deeper-screener offered as a choice — “skip and finish” honored for simple filers.
+      <span class="tags"><span class="tag ok">free feature</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p5-s05-federal-tax-summary-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p5-s05-federal-tax-summary-full.png" alt="Federal tax summary showing $512 owed"></a>
+    <figcaption><b>P5 · Federal review — the hard stop</b> Full line-item summary; $512 owed. The run ends here, before any
+      file/submit control.
+      <span class="tags"><span class="tag gate">traversal terminal</span></span></figcaption>
+  </figure>
+</div>
+
+<h2><span class="n">06</span>Methodology &amp; caveats</h2>
+<div class="foot" style="margin-top:8px;border-top:none;padding-top:0">
+  <p><b>Setup.</b> Live FreeTaxUSA production build, desktop web (1440×900), captured September 4, 2026 (off-season,
+  TY2025 product). One traversal per cell; agent-driven navigation with human-in-the-loop for all authentication.
+  Synthetic persona: single filer, one W-2 (wages $48,062, box-10 dependent care $5,000, 401(k) + Roth deferrals),
+  no dependents, standard deduction, Wyoming resident.</p>
+  <p><b>Counting rules.</b> A screen turn is any full content change requiring user action (page loads, SPA swaps,
+  full-screen interstitials). Clicks are the minimum legitimate free-path actions, including upsell declines.
+  Sign-in/re-auth screens are logged but excluded from headline totals (they were triggered by tooling idle time,
+  though FTU’s ~6–8-minute session timeout is itself a real finding). Test-data corrections (two ZIP↔state fixes, one
+  invalid-format EIN) are documented as data fixes, not product friction.</p>
+  <p><b>Hard limits honored.</b> No return was filed or transmitted; no payment information was ever entered; the state
+  branch stopped at the checkout screen. The California return exists only as an unfiled, unpaid draft on a test account.</p>
+  <p><b>What this is not yet.</b> This is one of four planned traversals (FreeTaxUSA and a competitor, desktop and
+  mobile web each). Cross-product comparison, per-phase pairings, and recommendations ship in the final report.
+  Identity-bearing screenshots are withheld from this public interim page.</p>
+</div>
+
+</div>
+</body>
+</html>
