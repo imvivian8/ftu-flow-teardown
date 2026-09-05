@@ -85,16 +85,17 @@
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Interim findings · 1 of 4 traversals</div>
+  <div class="eyebrow">Interim findings · traversal 1 of 4 — FTU desktop, complete end to end</div>
   <h1>FreeTaxUSA start-to-complete teardown</h1>
   <p class="sub">A screen-by-screen walk of FreeTaxUSA’s 2025 filing flow (desktop web) with a synthetic
-  single-W-2 filer — every screen captured, every monetization moment inventoried, stopped hard before any
-  filing or payment action.</p>
+  single-W-2 filer — every screen captured from the landing page to the final <i>“Finish Tax Return”</i>
+  control, every monetization moment inventoried, with no filing, attestation, or payment action ever taken.</p>
   <div class="meta">
-    <span class="chip">Captured Sept 4, 2026 · live off-season build (TY2025)</span>
+    <span class="chip">Captured Sept 4–5, 2026 · live off-season build (TY2025)</span>
     <span class="chip">Synthetic persona · single filer · one W-2 · standard deduction</span>
     <span class="chip b">Federal path: 41 screens · 44 clicks · 44 required fields</span>
     <span class="chip b">State branch: +29 screens → $15.99 paywall</span>
+    <span class="chip b">Final Steps: +13 screens → the completion edge</span>
   </div>
 </header>
 
@@ -113,6 +114,7 @@ Auth/sign-in screens are excluded (tooling artifact — see methodology).</p>
     <tr><td>5 · Review (hard stop)</td><td>5</td><td>5</td><td>1</td><td>1 (Pro Support card)</td></tr>
     <tr class="total"><td>Federal total</td><td>41</td><td>44</td><td>44</td><td>4</td></tr>
     <tr><td>State branch (WY probe + full CA return)</td><td>29</td><td>29</td><td>38</td><td>1 hard gate ($15.99 checkout)</td></tr>
+    <tr><td>Final Steps (order → review → submit edge)</td><td>13</td><td>14</td><td>4</td><td>7 (Audit Defense $19.99, 2.5% card fee, 4 state add-backs + retention dialog)</td></tr>
   </tbody>
 </table>
 </div>
@@ -150,6 +152,23 @@ correctly added back to taxable wages for a filer with no dependents.</p>
   <li><b>Sessions die after ~6–8 idle minutes.</b>
     <p>Server-side timeout with full credential re-entry and a forced re-prompt (<code>?PRMPT</code>) on the homepage
     sign-in link — real friction for any filer who steps away mid-return.</p></li>
+  <li><b>The free federal path is genuinely instrument-free.</b>
+    <p>With a $0 cart, no card or bank form ever appears. The only money decision left is paying the IRS itself —
+    where the credit-card option carries a 2.5% third-party surcharge and is listed first; free IRS Direct Pay is
+    listed last.</p></li>
+  <li><b>Remove the state return and it chases you to the finish line.</b>
+    <p>Cart removal triggers a save-the-sale dialog (“Keep my CA return” as the primary button, plus a questionable
+    “you’ll still need to file your CA return by April 15, 2026” claim for a $0-liability nonresident) — followed by
+    <i>four</i> separate add-back pitches: a “ready to file” product card, an order-summary note, a formal Tax Return
+    Alert, and a numbered step inside the review checklist.</p></li>
+  <li><b>A fourth paid product fires <i>after</i> checkout.</b>
+    <p>A dedicated Audit Defense interstitial ($19.99, “10K+ bought in past week”) appears once the order is done —
+    a second bite at the wallet post-cart. Completion itself, by contrast, is one clean control: an explicit
+    “I understand” attestation plus a single “Finish Tax Return” button.</p></li>
+  <li><b>FTU pre-validates e-file eligibility instead of letting the IRS bounce you.</b>
+    <p>The invalid-format test EIN produced “Unfortunately, your federal return isn’t eligible for e-file — we’ll help
+    you mail your return instead,” routing to the print-and-mail path up front. User-protective, and clearly
+    communicated at the filing-method step rather than after a rejection.</p></li>
 </ol>
 
 <h2><span class="n">03</span>The monetization map</h2>
@@ -201,8 +220,26 @@ single click on this run.</p>
       <img loading="lazy" src="assets/ftu-desktop-p6-s29-order-products-cart-15.99.png" alt="Order Products checkout with $15.99 state return in cart"></a>
     <figcaption><b>The paywall — “Order Products”</b> Cart: Federal FREE · California State Return $15.99 · Total $15.99,
       beside a cross-sell grid (Audit Defense $19.99 “10K+ bought in past week,” Deluxe $7.99, Pro $64.99, printed copy
-      $8.96, bound $17.96). Traversal hard-stopped here — beyond this is payment entry.
+      $8.96, bound $17.96). The state branch stopped here; the CA item was later removed via the cart’s Remove link
+      to walk the free federal path to completion (see the completion-edge section).
       <span class="tags"><span class="tag gate">hard gate</span><span class="tag money">$15.99</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s02-remove-ca-retention-dialog.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s02-remove-ca-retention-dialog.png" alt="Retention dialog when removing the CA state return"></a>
+    <figcaption><b>The save-the-sale dialog</b> Removing the $15.99 item prompts “Are you sure? … You’ll still need to
+      file your CA return by April 15, 2026” — with “Keep my CA return” as the primary button. That deadline claim is
+      dubious for a $0-liability nonresident.
+      <span class="tags"><span class="tag warn">retention</span><span class="tag money">$15.99</span></span>
+    </figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s04-audit-defense-interstitial.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s04-audit-defense-interstitial.png" alt="Audit Defense $19.99 interstitial after checkout"></a>
+    <figcaption><b>Audit Defense — the post-checkout ambush</b> “Don’t forget Audit Defense … Only $19.99.” A full-screen
+      pitch placed <i>after</i> the order page, with two “Get Audit Defense” CTAs; free path is a single “Continue.”
+      <span class="tags"><span class="tag money">interstitial</span><span class="tag money">$19.99</span><span class="tag ok">1-click decline</span></span>
     </figcaption>
   </figure>
 </div>
@@ -317,7 +354,80 @@ filled W-2 header) are intentionally omitted from this public page.</p>
   </figure>
 </div>
 
-<h2><span class="n">06</span>Methodology &amp; caveats</h2>
+<h2><span class="n">06</span>The completion edge — Final Steps, end to end</h2>
+<p class="lede">FTU frames completion as a three-step stepper: <b>Order Products → Review Tax Return → Submit Tax
+Return</b>. This walk removed the optional CA return (restoring the $0 free path), declined every offer, chose
+zero-data IRS payment options, and ended on the last screen a filer sees before their return is complete — captured,
+never clicked.</p>
+<div class="hero">
+  <a href="assets/ftu-desktop-p7-s13-TERMINAL-finish-tax-return.png" target="_blank" rel="noopener">
+    <img loading="lazy" src="assets/ftu-desktop-p7-s13-TERMINAL-finish-tax-return.png"
+      alt="Final screen: Let's send in your tax return, with attestation checkbox and Finish Tax Return button"></a>
+  <div class="cap"><b>The terminal artifact of the whole traversal:</b> “Let’s send in your tax return!” — an explicit
+  attestation checkbox (“I understand that I’ll need to print and mail in my taxes,” left unchecked) and the single
+  completion control, <b>“Finish Tax Return”</b> (not clicked). One checkbox, one button: the cleanest moment in the
+  product. Note the path is <i>mail</i>, not e-file — see below.</div>
+</div>
+<div class="grid" style="margin-top:18px">
+  <figure>
+    <a href="assets/ftu-desktop-p7-s12-not-eligible-efile.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s12-not-eligible-efile.png" alt="Not eligible for e-file message"></a>
+    <figcaption><b>E-file pre-validated — and blocked</b> “Unfortunately, your federal return isn’t eligible for e-file …
+      We’ll help you mail your return instead.” Triggered by the test W-2’s invalid-format EIN; FTU gates e-file up front
+      rather than letting the IRS reject.
+      <span class="tags"><span class="tag ok">protective validation</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s05-order-summary-0-dollars.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s05-order-summary-0-dollars.png" alt="Order summary showing $0.00 total"></a>
+    <figcaption><b>$0.00 — and no payment form</b> “Congratulations! Your federal return will be prepared and e-filed for
+      free!” At a zero cart, no card or bank field ever appears. (Plus CA add-back nudge #2.)
+      <span class="tags"><span class="tag ok">instrument-free</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s06-federal-tax-payment-options.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s06-federal-tax-payment-options.png" alt="Pay when I e-file vs pay on my own options"></a>
+    <figcaption><b>Paying the IRS: the fork</b> “Pay when I e-file (bank account or credit card)” vs. “Pay on my own.”
+      The zero-data path was chosen; no account numbers were ever entered.</figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s07-self-pay-methods.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s07-self-pay-methods.png" alt="Self-pay methods including 2.5% card fee"></a>
+    <figcaption><b>The 2.5% detail</b> Four self-pay methods: the fee-carrying card option (“through a third party —
+      2.5% in fees”) is listed first; free IRS Direct Pay is last. Mail voucher (1040-V) chosen.
+      <span class="tags"><span class="tag money">2.5% surcharge</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s10-tax-return-alerts-full.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s10-tax-return-alerts-full.png" alt="Tax return alerts including invalid EIN warning"></a>
+    <figcaption><b>Final alerts, done well</b> Three yellow advisories: the $5,000 dependent-care add-back explained with
+      jump-links; the invalid-EIN e-file warning; and the unpurchased CA return elevated into the alerts system
+      (add-back nudge #3).
+      <span class="tags"><span class="tag ok">transparent</span><span class="tag warn">nudge-as-alert</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s11-review-your-tax-return.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s11-review-your-tax-return.png" alt="Review your tax return step with CA purchase prompt"></a>
+    <figcaption><b>Review step — with a sales step inside</b> Step 1: view the federal PDF. “Step 2: Prepare California
+      Tax Return” is a purchase prompt occupying a numbered review task (add-back nudge #4).
+      <span class="tags"><span class="tag warn">nudge-as-step</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s03-order-products-after-removal.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s03-order-products-after-removal.png" alt="Order products after removal with CA add-back card"></a>
+    <figcaption><b>The instant add-back</b> Seconds after removal, the completed CA return reappears as a product card:
+      “California State Return (ready to file) — Add for $15.99” (add-back nudge #1, leaning on sunk effort).
+      <span class="tags"><span class="tag money">$15.99</span><span class="tag warn">sunk-cost re-sell</span></span></figcaption>
+  </figure>
+  <figure>
+    <a href="assets/ftu-desktop-p7-s08-payment-method-summary.png" target="_blank" rel="noopener">
+      <img loading="lazy" src="assets/ftu-desktop-p7-s08-payment-method-summary.png" alt="Payment method summary: mail with 1040-V"></a>
+    <figcaption><b>Payment confirmed, zero data</b> The $512 owed will be “mailed in with Form 1040-V” — the whole free
+      path completes without a single account number.</figcaption>
+  </figure>
+</div>
+
+<h2><span class="n">07</span>Methodology &amp; caveats</h2>
 <div class="foot" style="margin-top:8px;border-top:none;padding-top:0">
   <p><b>Setup.</b> Live FreeTaxUSA production build, desktop web (1440×900), captured September 4, 2026 (off-season,
   TY2025 product). One traversal per cell; agent-driven navigation with human-in-the-loop for all authentication.
@@ -328,11 +438,16 @@ filled W-2 header) are intentionally omitted from this public page.</p>
   Sign-in/re-auth screens are logged but excluded from headline totals (they were triggered by tooling idle time,
   though FTU’s ~6–8-minute session timeout is itself a real finding). Test-data corrections (two ZIP↔state fixes, one
   invalid-format EIN) are documented as data fixes, not product friction.</p>
-  <p><b>Hard limits honored.</b> No return was filed or transmitted; no payment information was ever entered; the state
-  branch stopped at the checkout screen. The California return exists only as an unfiled, unpaid draft on a test account.</p>
+  <p><b>Hard limits honored.</b> No return was filed, transmitted, or attested; no payment information was ever
+  entered anywhere (product cart reached $0; the IRS balance was assigned to a mail-in voucher, a choice that collects
+  no data). The state checkout was captured, then the optional CA item was removed to walk the free path; the Final
+  Steps walk ended at the “Finish Tax Return” control without clicking it, its attestation checkbox left unchecked.
+  E-file was independently blocked by FTU’s own validation (invalid-format test EIN), so no transmit control was ever
+  reachable on this run.</p>
   <p><b>What this is not yet.</b> This is one of four planned traversals (FreeTaxUSA and a competitor, desktop and
   mobile web each). Cross-product comparison, per-phase pairings, and recommendations ship in the final report.
-  Identity-bearing screenshots are withheld from this public interim page.</p>
+  Identity-bearing screenshots (and one screen showing an account phone number) are withheld from this public
+  interim page.</p>
 </div>
 
 </div>
